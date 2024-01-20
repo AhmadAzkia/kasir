@@ -1,7 +1,8 @@
+import React from 'react'
 const LoginPages = () => {
     return (
         <>
-            <h1>Login</h1>
+            <h1>Login Dulu Kita</h1>
         </>
     )
 }
