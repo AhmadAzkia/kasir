@@ -63,11 +63,6 @@ const LoginPages = () => {
               />
             </div>
           </div>
-          {/* Remember Me checkbox */}
-          <div className="flex justify-center items-center mt-4">
-            <p className="inline-flex items-center text-gray-700 font-medium text-xs text-center">
-            </p>
-          </div>
           <button
             type="submit"
             value="login"
