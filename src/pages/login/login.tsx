@@ -33,10 +33,10 @@ const LoginPages = () => {
               </svg>
               <input
                 className="pl-2 outline-none border-none w-full"
-                type="email"
-                name="email"
+                type="username"
+                name="username"
                 value=""
-                placeholder="Email"
+                placeholder="username"
                 required
               />
             </div>
