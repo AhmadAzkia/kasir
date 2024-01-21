@@ -32,8 +32,8 @@ const LoginPages = () => {
                 />
               </svg>
               <input
-                className="pl-2 outline-none border-none w-full"
-                type="username"
+                className="pl-2 text-sm outline-none border-none w-full"
+                type="text"
                 name="username"
                 value=""
                 placeholder="username"
@@ -54,13 +54,63 @@ const LoginPages = () => {
                 />
               </svg>
               <input
-                className="pl-2 outline-none border-none w-full"
-                type="password"
+                className="pl-2 text-sm outline-none border-none w-full"
+                type={showPassword ? 'text' : 'password'}
                 name="password"
                 id=""
                 placeholder="Password"
                 required
               />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className=""
+              >
+                {showPassword ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15.364 8.364a4 4 0 10-5.657 5.657"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M18 12a6 6 0 11-6-6"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15.364 8.364a4 4 0 10-5.657 5.657"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 15a3 3 0 01-3-3 3 3 0 016 0 3 3 0 01-3 3z"
+                    />
+                  </svg>
+                )}
+              </button>
+              
             </div>
           </div>
           <button
