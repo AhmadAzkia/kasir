@@ -7,7 +7,6 @@ const inter = Inter({ subsets: ["latin"] });
 const Dashboard = () => {
     return (
         <main className={inter.className}>
-            <Header/>
             <SideMenu/>
         </main>
     )
