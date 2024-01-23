@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
+import Login from '../../../public/img/login.png'
 
 const LoginPages = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -8,16 +10,24 @@ const LoginPages = () => {
   }
 
   return (
-    <div className='bg-gray-100 h-screen flex items-center justify-center'>
+    <div className="bg-gray-100 h-screen flex items-center justify-center">
       <div className="h-screen bg-gradient-to-br from-blue-600 to-cyan-300 flex justify-center items-center w-full">
         <form method="POST" action="#">
-          <div className="bg-white px-10 py-8 rounded-xl w-screen shadow-xl max-w-sm">
-            <div className="space-y-4">
-              <h1 className="text-center text-2xl font-semibold text-gray-600">
+          <div className="bg-white px-10 py-8 rounded-xl w-screen shadow-xl w-max flex">
+            <div className="flex-1 justify-center">
+              <Image
+                className="w-96"
+                src={Login}
+                alt="Logo"
+                width={512}
+                height={512}
+              />
+            </div>
+            <div className="mt-4 flex-1 justify-center ml-5">
+              <h1 className="text-center mb-8 text-3xl font-semibold text-gray-600">
                 Login
               </h1>
-              <hr />
-              <div className="flex items-center border-2 py-2 px-3 rounded-md mb-4">
+              <div className="flex items-center border-2 py-2 px-3 rounded-md mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 text-gray-400"
@@ -111,20 +121,15 @@ const LoginPages = () => {
                     </svg>
                   )}
                 </button>
-                
               </div>
-            </div>
-            <button
-              type="submit"
-              value="login"
-              id="login"
-              className="mt-6 w-full shadow-xl bg-gradient-to-tr from-blue-600 to-red-400 hover:to-red-700 text-indigo-100 py-2 rounded-md text-lg tracking-wide transition duration-1000"
-            >
-              Login
-            </button>
-            <hr />
-            <div className="flex justify-center items-center mt-4">
-              <p className="inline-flex items-center text-gray-700 font-medium text-xs text-center"></p>
+              <button
+                type="submit"
+                value="login"
+                id="login"
+                className="mt-8 w-full shadow-xl bg-gradient-to-tr from-blue-600 to-red-400 hover:to-red-700 text-indigo-100 py-2 rounded-md text-lg tracking-wide transition duration-1000"
+              >
+                Login
+              </button>
             </div>
           </div>
         </form>
