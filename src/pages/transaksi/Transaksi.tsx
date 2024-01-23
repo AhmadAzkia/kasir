@@ -1,12 +1,12 @@
 import React from 'react'
 import { Inter } from "next/font/google";
-import Header from '../components/Header'
-import SideMenu from '../components/SideMenu'
+import SideMenu from '../components/SideMenu';
 import Footer from '../components/footer/Footer';
 import Main from '../components/main/Main';
+import Header from '../components/Header';
 
 const inter = Inter({ subsets: ["latin"] });
-const Dashboard = () => {
+const Transaksi = () => {
     return (
         <main className={inter.className}>
             <SideMenu/>
@@ -17,4 +17,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default Transaksi
