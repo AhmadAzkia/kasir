@@ -13,7 +13,7 @@ const LoginPages = () => {
     <div className="bg-gray-100 h-screen flex items-center justify-center">
       <div className="h-screen bg-gradient-to-br from-blue-600 to-cyan-300 flex justify-center items-center w-full">
         <form method="POST" action="#">
-          <div className="bg-white px-10 py-8 rounded-xl w-screen shadow-xl w-max flex">
+          <div className="bg-white px-10 py-8 rounded-xl w-max shadow-xl flex">
             <div className="flex-1 justify-center">
               <Image
                 className="w-96"
