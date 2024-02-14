@@ -1,9 +1,9 @@
 import React from 'react'
 import { Inter } from "next/font/google";
-import SideMenu from '../components/SideMenu';
-import Footer from '../components/footer/Footer';
-import Main from '../components/main/Main';
-import Header from '../components/Header';
+import SideMenu from '../../components/Kasir/dashboardKasir/SideMenu';
+import Footer from '../../components/Kasir/dashboardKasir/footer/Footer';
+import Main from '../../components/Kasir/dashboardKasir/main/Main';
+import Header from '../../components/Kasir/dashboardKasir/Header';
 
 const inter = Inter({ subsets: ["latin"] });
 const Transaksi = () => {

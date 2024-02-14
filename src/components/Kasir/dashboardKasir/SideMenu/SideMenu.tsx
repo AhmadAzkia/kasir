@@ -17,7 +17,7 @@ const SideMenu = () => {
 
         <ul className='my-4 mx-4'>
           <li>
-            <Link href="/dashboard"  className={router.pathname == "/dashboard" ? "rounded bg-white text-[#335ACB] flex items-center my-2 py-2 px-4 font-poppins gap-2" : "rounded text-gray-300 flex items-center my-2 py-2 px-4 font-poppins gap-2"}>
+            <Link href="/dashboardKasir"  className={router.pathname == "/dashboard" ? "rounded bg-white text-[#335ACB] flex items-center my-2 py-2 px-4 font-poppins gap-2" : "rounded text-gray-300 flex items-center my-2 py-2 px-4 font-poppins gap-2"}>
               <i className="ri-dashboard-fill text-2xl"></i>
               <span className='text-base'>Dashboard</span>
             </Link>

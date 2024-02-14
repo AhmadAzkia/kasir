@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Router, useRouter } from 'next/router'
 import Image from 'next/image'
 import Login from '../../../public/img/login.png'
 
@@ -9,10 +10,66 @@ const LoginPages = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword)
   }
 
+  const router = useRouter()
+
+  const [Username, setUsername] = useState('');
+  const [Password, setPassword] = useState('');
+
+  const handleInputUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
+  };
+
+  const handleInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const handleLogin = async () => {
+    try {
+        const responseKasir = await fetch('http://localhost:3001/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ Username, Password })
+        });
+        
+        if (responseKasir.ok) {
+            // Simpan token di cookie atau di localStorage
+            localStorage.setItem('token', Username);
+            alert(`Login Berhasil, anda Kasir!`)
+            router.push('/dashboardKasir')
+        } else {
+            const responseAdmin = await fetch('http://localhost:3001/loginAdmin', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ Username, Password })
+            });
+
+            if(responseAdmin.ok) { 
+              // Simpan token di cookie atau di localStorage
+              localStorage.setItem('token', Username);
+              alert(`Login Berhasil, anda Admin!`)
+              router.push('/dashboardAdmin')
+            }
+
+            else {
+              alert('Login gagal, periksa kembali Username dan Password anda!');
+              setUsername('')
+              setPassword('')
+            }
+            
+        }
+    } catch (error) {
+        console.error('Terjadi kesalahan:', error);
+    }
+  };
+
+
   return (
     <div className="bg-gray-100 h-screen flex items-center justify-center">
       <div className="h-screen bg-gradient-to-br from-blue-600 to-cyan-300 flex justify-center items-center w-full">
-        <form method="POST" action="#">
           <div className="bg-white px-10 py-8 rounded-xl w-max shadow-xl flex">
             <div className="flex-1 justify-center">
               <Image
@@ -46,8 +103,9 @@ const LoginPages = () => {
                   className="pl-2 text-sm outline-none border-none w-full"
                   type="text"
                   name="username"
-                  defaultValue=""
                   placeholder="username"
+                  value={Username} 
+                  onChange={handleInputUsername} 
                   required
                 />
               </div>
@@ -70,6 +128,8 @@ const LoginPages = () => {
                   name="password"
                   id=""
                   placeholder="Password"
+                  value={Password}
+                  onChange={handleInputPassword}
                   required
                 />
                 <button
@@ -123,16 +183,13 @@ const LoginPages = () => {
                 </button>
               </div>
               <button
-                type="submit"
-                value="login"
-                id="login"
-                className="mt-8 w-full shadow-xl bg-gradient-to-tr from-blue-600 to-red-400 hover:to-red-700 text-indigo-100 py-2 rounded-md text-lg tracking-wide transition duration-1000"
-              >
-                Login
+                  type="submit"
+                  onClick={handleLogin}
+                  className="mt-8 w-full shadow-xl bg-gradient-to-tr from-blue-600 to-red-400 hover:to-red-700 text-indigo-100 py-2 rounded-md text-lg tracking-wide transition duration-1000">
+                      Login
               </button>
             </div>
           </div>
-        </form>
       </div>
     </div>
   )
