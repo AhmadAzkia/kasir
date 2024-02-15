@@ -25,7 +25,7 @@ const LoginPages = () => {
 
   const handleLogin = async () => {
     try {
-        const responseKasir = await fetch('http://localhost:3001/login', {
+        const responseKasir = await fetch('https://backendimk.vercel.app/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ const LoginPages = () => {
             alert(`Login Berhasil, anda Kasir!`)
             router.push('/dashboardKasir')
         } else {
-            const responseAdmin = await fetch('http://localhost:3001/loginAdmin', {
+            const responseAdmin = await fetch('https://backendimk.vercel.app/loginAdmin', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
