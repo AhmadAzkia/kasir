@@ -6,7 +6,7 @@ import Main from '../../components/Kasir/marketplace/main';
 import Header from '../../components/Kasir/dashboardKasir/Header';
 const inter = Inter({ subsets: ["latin"] });
 
-const Barang = () => {
+const Marketplace = () => {
     const [getDataBarang, setDataBarang] = useState([]);
 
     const getBarang = async () => {
@@ -37,4 +37,4 @@ const Barang = () => {
     );
 }
 
-export default Barang;
+export default Marketplace;

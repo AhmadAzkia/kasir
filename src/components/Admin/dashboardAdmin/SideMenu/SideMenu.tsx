@@ -23,7 +23,7 @@ const SideMenu = () => {
             </Link>
           </li>
           <li>
-            <Link href="/transaksi"  className={router.pathname == "/transaksi" ? "rounded bg-white text-[#335ACB] flex items-center my-2 py-2 px-4 font-poppins gap-2" : "rounded text-gray-300 flex items-center my-2 py-2 px-4 font-poppins gap-2"}>
+            <Link href="/transaksiAdmin"  className={router.pathname == "/TransaksiAdmin" ? "rounded bg-white text-[#335ACB] flex items-center my-2 py-2 px-4 font-poppins gap-2" : "rounded text-gray-300 flex items-center my-2 py-2 px-4 font-poppins gap-2"}>
             <i className="ri-wallet-2-fill text-2xl"></i>
               <span className='text-base'>Transaksi</span>
             </Link>
