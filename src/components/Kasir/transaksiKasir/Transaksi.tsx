@@ -2,25 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { FaCartPlus, FaEye, FaPlus, FaTimes } from 'react-icons/fa';
 
-const Main = () => {
+const TransaksiAdmin = () => {
   const router = useRouter();
   const [token, setToken] = useState<string | null>(null);
-  const [barang, setBarang] = useState<any[]>([]);
+  const [transaksi, setTransaksi] = useState<any[]>([]);
   const [showDetailsPopup, setShowDetailsPopup] = useState(false);
   const [showAddPopup, setShowAddPopup] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any | null>(null);
   const [formData, setFormData] = useState({
-    nama_barang: '',
-    kategori_barang: '',
-    harga_barang: '',
-    stok_barang: '',
+    id_transaksi: '', 
+    isi_transaksi: '',
+    tanggal_transaksi: '',
+    total_transaksi: '',
   });
 
-  const getDataBarang = async () => {
+  const getDataTransaksi = async () => {
     try {
-      const response = await fetch('https://backendimk.vercel.app/api/barang');
+      const response = await fetch('https://backendimk.vercel.app/api/transaksi');
       const result = await response.json();
-      setBarang(result);
+      setTransaksi(result);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -35,75 +35,74 @@ const Main = () => {
     setShowAddPopup(!showAddPopup);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  // Memperbarui handleInputChange untuk menangani perubahan pada input username
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = e.target;
+  setFormData({ ...formData, [name]: value });
+};
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://backendimk.vercel.app/api/createBarang', {
+      const response = await fetch('https://backendimk.vercel.app/api/createTransaksi', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          // Jika diperlukan, Anda dapat menyertakan token di sini
-          // 'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          namaBarang: formData.nama_barang,
-          kategoriBarang: formData.kategori_barang,
-          hargaBarang: formData.harga_barang,
-          stokBarang: formData.stok_barang
+          id_transaksi: formData.id_transaksi,
+          isi_transaksi: formData.isi_transaksi,
+          tanggal_transaksi: formData.tanggal_transaksi,
+          total_transaksi: formData.total_transaksi
         })
       });
   
       if (!response.ok) {
-        throw new Error('Failed to add barang');
+        throw new Error('Failed to add Transaksi');
       }
+
+      alert('Tambah Transaksi Berhasil!')
   
       // Reset form data jika berhasil ditambahkan
       setFormData({
-        nama_barang: '',
-        kategori_barang: '',
-        harga_barang: '',
-        stok_barang: ''
+        id_transaksi: '',
+        isi_transaksi: '',
+        tanggal_transaksi: '',
+        total_transaksi: ''
       });
-
-      alert('Data Barang Berhasil di Tambahkan!')
   
-      // Anda mungkin ingin memperbarui data barang setelah menambahkan barang baru
-      getDataBarang();
+      // Anda mungkin ingin memperbarui data Transaksi setelah menambahkan Transaksi baru
+      getDataTransaksi();
   
       setShowAddPopup(false);
     } catch (error) {
-      console.error('Error adding barang:', error);
+      console.error('Error adding Transaksi:', error);
       // Tambahkan logika penanganan kesalahan sesuai kebutuhan Anda
     }
   };
   
 
   useEffect(() => {
-    const getToken = localStorage.getItem('admin');
+    const getToken = localStorage.getItem('kasir');
     if (getToken) {
       setToken(getToken);
     } else {
       router.push('/');
     }
-    getDataBarang();
+    getDataTransaksi();
   }, []);
 
   return (
     <div className="min-h-[80vh] bg-[#F8F9FC] ps-64 py-5">
       <div className="max-w-7xl mx-auto">
-      <h1 className='text-3xl font-bold'>Barang</h1>
+      <h1 className='text-3xl font-bold'>Log Transaksi</h1>
         <div className="grid grid-cols-3 gap-8 pt-7">
-          {barang.map((item) => (
-            <div key={item.id_barang} className="bg-white rounded-lg shadow-md p-4 flex flex-col">
-              <h2 className="text-xl font-semibold mb-2">{item.nama_barang}</h2>
-              <p className="text-gray-600">Kategori: {item.kategori_barang}</p>
-              <p className="text-gray-600">Harga: Rp {item.harga_barang}</p>
-              <p className="text-gray-600">Stok: {item.stok_barang}</p>
+          {transaksi.map((item) => (
+            <div key={item.id_transaksi} className="bg-white rounded-lg shadow-md p-4 flex flex-col">
+              <h2 className="text-xl font-semibold mb-2">{item.id_transaksi}</h2>
+              <p className="text-gray-600">Isi Transaksi    : {item.isi_transaksi}</p>
+              <p className="text-gray-600">Tanggal Transaksi : {item.tanggal_transaksi}</p>
+              <p className="text-gray-600">Total Transaksi      : {item.total_transaksi}</p>
               <div className="flex justify-end mt-auto">
                 <button
                   onClick={() => toggleDetailsPopup(item)}
@@ -127,10 +126,10 @@ const Main = () => {
                 <FaTimes />
               </button>
             </div>
-            <h2 className="text-xl font-semibold mb-2">{selectedItem.nama_barang}</h2>
-            <p className="text-gray-600">Kategori: {selectedItem.kategori_barang}</p>
-            <p className="text-gray-600">Harga: Rp {selectedItem.harga_barang}</p>
-            <p className="text-gray-600">Stok: {selectedItem.stok_barang}</p>
+            <h2 className="text-xl font-semibold mb-2">{selectedItem.id_transaksi}</h2>
+            <p className="text-gray-600">Isi Transaksi    : {selectedItem.isi_transaksi}</p>
+              <p className="text-gray-600">Tanggal Transaksi : {selectedItem.tanggal_tansaksi}</p>
+              <p className="text-gray-600">Total Transaksi      : {selectedItem.total_transaksi}</p>
           </div>
         </div>
       )}
@@ -142,60 +141,60 @@ const Main = () => {
                 <FaTimes />
               </button>
             </div>
-            <h2 className="text-xl font-semibold mb-2">Tambah Barang</h2>
+            <h2 className="text-xl font-semibold mb-2">Tambah Transaksi</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nama_barang">
-                  Nama Barang
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="id_transaksi">
+                  id_transaksi
                 </label>
                 <input
                   className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="nama_barang"
-                  type="text"
-                  name="nama_barang"
-                  value={formData.nama_barang}
+                  id="username"
+                  type="int"
+                  name="username"
+                  value={formData.id_transaksi}
                   onChange={handleInputChange}
                   required
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="kategori_barang">
-                  Kategori Barang
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="isi_transaksi">
+                  Isi Transaksi
                 </label>
                 <input
                   className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="kategori_barang"
+                  id="isi_transaksi"
                   type="text"
-                  name="kategori_barang"
-                  value={formData.kategori_barang}
+                  name="isi_transaksi"
+                  value={formData.isi_transaksi}
                   onChange={handleInputChange}
                   required
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="harga_barang">
-                  Harga Barang
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tanggal_transaksi">
+                  Tanggal Transaksi
                 </label>
                 <input
                   className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="harga_barang"
-                  type="number"
-                  name="harga_barang"
-                  value={formData.harga_barang}
+                  id="tanggal_transaksi"
+                  type="text"
+                  name="tanggal_transaksi"
+                  value={formData.tanggal_transaksi}
                   onChange={handleInputChange}
                   required
                 />
               </div>
-              <div className="mb-6">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="stok_barang">
-                  Stok Barang
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="total_transaksi">
+                  Total Transaksi
                 </label>
                 <input
                   className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="stok_barang"
-                  type="number"
-                  name="stok_barang"
-                  value={formData.stok_barang}
+                  id="total_transaksi"
+                  type="text"
+                  name="total_transaksi"
+                  value={formData.total_transaksi}
                   onChange={handleInputChange}
                   required
                 />
@@ -212,15 +211,8 @@ const Main = () => {
           </div>
         </div>
       )}
-    <button
-  onClick={toggleAddPopup}
-  className="mx-auto mt-8 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-green-600 focus:outline-none"
->
-  Tambah Barang
-</button>
-
     </div>
   );
 };
 
-export default Main;
+export default TransaksiAdmin

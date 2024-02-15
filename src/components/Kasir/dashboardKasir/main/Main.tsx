@@ -21,7 +21,7 @@ const Main = () => {
 
   return (
     <div className='min-h-[80vh] bg-[#F8F9FC] ps-64'>
-      {token && <div className="text-3xl font-semibold text-gray-800 mt-5 ml-10">Selamat Datang, {token}!</div>}
+      {token && <div className="text-3xl font-semibold text-gray-800 pt-5 ml-10">Selamat Datang, {token}!</div>}
       {incomeData && (
         <div className="flex justify-around mt-8">
           <div className="p-4 border border-gray-300 w-80 rounded-md bg-white shadow-md">

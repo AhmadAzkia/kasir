@@ -40,12 +40,6 @@ const SideMenu = () => {
               <span className='text-base'>Barang</span>
             </Link>
           </li>
-          <li>
-            <Link href="/customer"  className={router.pathname == "/customer" ? "rounded bg-white text-[#335ACB] flex items-center my-2 py-2 px-4 font-poppins gap-2" : "rounded text-gray-300 flex items-center my-2 py-2 px-4 font-poppins gap-2"}>
-            <i className="ri-customer-service-2-fill text-2xl"></i>
-              <span className='text-base'>Customer Support</span>
-            </Link>
-          </li>
           {/* <li className='rounded hover:bg-white'>
             <a href="" className='flex items-center my-2 py-2 px-4 text-gray-300 font-poppins gap-2 hover:text-[#335ACB]'>
             <i className="ri-wallet-2-fill text-2xl"></i>

@@ -29,21 +29,9 @@ const SideMenu = () => {
             </Link>
           </li>
           <li>
-            <Link href="/penjualan"  className={router.pathname == "/penjualan" ? "rounded bg-white text-[#335ACB] flex items-center my-2 py-2 px-4 font-poppins gap-2" : "rounded text-gray-300 flex items-center my-2 py-2 px-4 font-poppins gap-2"}>
-            <i className="ri-shopping-bag-fill text-2xl"></i>
-              <span className='text-base'>Penjualan</span>
-            </Link>
-          </li>
-          <li>
             <Link href="/marketplace"  className={router.pathname == "/marketplace" ? "rounded bg-white text-[#335ACB] flex items-center my-2 py-2 px-4 font-poppins gap-2" : "rounded text-gray-300 flex items-center my-2 py-2 px-4 font-poppins gap-2"}>
             <i className="ri-store-3-fill text-2xl"></i>
               <span className='text-base'>Marketplace</span>
-            </Link>
-          </li>
-          <li>
-            <Link href="/customer"  className={router.pathname == "/customer" ? "rounded bg-white text-[#335ACB] flex items-center my-2 py-2 px-4 font-poppins gap-2" : "rounded text-gray-300 flex items-center my-2 py-2 px-4 font-poppins gap-2"}>
-            <i className="ri-customer-service-2-fill text-2xl"></i>
-              <span className='text-base'>Customer Support</span>
             </Link>
           </li>
           {/* <li className='rounded hover:bg-white'>

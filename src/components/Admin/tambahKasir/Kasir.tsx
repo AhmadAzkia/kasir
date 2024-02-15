@@ -97,7 +97,8 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   return (
     <div className="min-h-[80vh] bg-[#F8F9FC] ps-64 py-5">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-3 gap-8">
+      <h1 className='text-3xl font-bold'>Kasir</h1>
+        <div className="grid grid-cols-3 gap-8 pt-7">
           {kasir.map((item) => (
             <div key={item.id_kasir} className="bg-white rounded-lg shadow-md p-4 flex flex-col">
               <h2 className="text-xl font-semibold mb-2">{item.username}</h2>

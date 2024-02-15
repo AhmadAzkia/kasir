@@ -95,7 +95,8 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   return (
     <div className="min-h-[80vh] bg-[#F8F9FC] ps-64 py-5">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-3 gap-8">
+      <h1 className='text-3xl font-bold'>Log Transaksi Admin</h1>
+        <div className="grid grid-cols-3 gap-8 pt-7">
           {transaksi.map((item) => (
             <div key={item.id_transaksi} className="bg-white rounded-lg shadow-md p-4 flex flex-col">
               <h2 className="text-xl font-semibold mb-2">{item.id_transaksi}</h2>
@@ -210,13 +211,6 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           </div>
         </div>
       )}
-    <button
-  onClick={toggleAddPopup}
-  className="mx-auto mt-8 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-green-600 focus:outline-none"
->
-  Tambah Transaksi
-</button>
-
     </div>
   );
 };
