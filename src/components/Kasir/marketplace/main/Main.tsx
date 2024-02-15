@@ -20,9 +20,10 @@ const Main = () => {
     }
   };
 
-  // Fungsi untuk menambahkan barang ke keranjang
   const addToCart = (item: any) => {
-    setCart([...cart, item]);
+    // Tambahkan properti 'jumlah' ke setiap item yang ditambahkan ke keranjang
+    const newItem = { ...item, jumlah: 1 };
+    setCart([...cart, newItem]);
   };
 
   // Fungsi untuk menampilkan atau menyembunyikan keranjang
