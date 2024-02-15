@@ -36,17 +36,53 @@ const Kasir = () => {
     setShowAddPopup(!showAddPopup);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  // Memperbarui handleInputChange untuk menangani perubahan pada input username
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = e.target;
+  setFormData({ ...formData, [name]: value });
+};
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Kirim data ke backend atau lakukan operasi lainnya sesuai kebutuhan Anda
-    console.log(formData);
-    setShowAddPopup(false);
+    try {
+      const response = await fetch('https://backendimk.vercel.app/api/createKasir', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          nama: formData.nama_kasir,
+          jenisKelamin: formData.jenis_kelamin,
+          password: formData.password
+        })
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to add kasir');
+      }
+
+      alert('Tambah Kasir Berhasil!')
+  
+      // Reset form data jika berhasil ditambahkan
+      setFormData({
+        id_kasir: '',
+        username: '',
+        nama_kasir: '',
+        jenis_kelamin: '',
+        password: ''
+      });
+  
+      // Anda mungkin ingin memperbarui data kasir setelah menambahkan kasir baru
+      getDataKasir();
+  
+      setShowAddPopup(false);
+    } catch (error) {
+      console.error('Error adding kasir:', error);
+      // Tambahkan logika penanganan kesalahan sesuai kebutuhan Anda
+    }
   };
+  
 
   useEffect(() => {
     const getToken = localStorage.getItem('admin');
@@ -109,6 +145,20 @@ const Kasir = () => {
             <h2 className="text-xl font-semibold mb-2">Tambah Kasir</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                  Username
+                </label>
+                <input
+                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="username"
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nama_kasir">
                   Nama Kasir
                 </label>
@@ -143,7 +193,7 @@ const Kasir = () => {
                 <input
                   className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="password"
-                  type="number"
+                  type="text"
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}

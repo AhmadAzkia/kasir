@@ -42,10 +42,46 @@ const Main = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Kirim data ke backend atau lakukan operasi lainnya sesuai kebutuhan Anda
-    console.log(formData);
-    setShowAddPopup(false);
+    try {
+      const response = await fetch('https://backendimk.vercel.app/api/createBarang', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Jika diperlukan, Anda dapat menyertakan token di sini
+          // 'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          namaBarang: formData.nama_barang,
+          kategoriBarang: formData.kategori_barang,
+          hargaBarang: formData.harga_barang,
+          stokBarang: formData.stok_barang
+        })
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to add barang');
+      }
+  
+      // Reset form data jika berhasil ditambahkan
+      setFormData({
+        nama_barang: '',
+        kategori_barang: '',
+        harga_barang: '',
+        stok_barang: ''
+      });
+
+      alert('Data Barang Berhasil di Tambahkan!')
+  
+      // Anda mungkin ingin memperbarui data barang setelah menambahkan barang baru
+      getDataBarang();
+  
+      setShowAddPopup(false);
+    } catch (error) {
+      console.error('Error adding barang:', error);
+      // Tambahkan logika penanganan kesalahan sesuai kebutuhan Anda
+    }
   };
+  
 
   useEffect(() => {
     const getToken = localStorage.getItem('admin');
