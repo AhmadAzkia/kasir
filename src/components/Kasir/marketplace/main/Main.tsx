@@ -59,7 +59,7 @@ const Main = () => {
     const isiTransaksi = cart.map(item => `${item.nama_barang}: ${item.jumlah}`).join(', ');
 
     try {
-      const response = await fetch('http://localhost:3001/api/transaksi/createTransaksi', {
+      const response = await fetch('https://backendimk.vercel.app/api/transaksi/createTransaksi', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
