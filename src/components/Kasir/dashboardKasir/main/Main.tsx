@@ -10,7 +10,7 @@ const Main = () => {
     const getToken = localStorage.getItem('kasir');
     if (getToken) {
       setToken(getToken);
-      fetch('http://localhost:3001/api/transaksi/pemasukan')
+      fetch('https://backendimk.vercel.app/api/transaksi/pemasukan')
         .then(response => response.json())
         .then(data => setIncomeData(data))
         .catch(error => console.error('Error fetching data:', error));
@@ -23,6 +23,7 @@ const Main = () => {
     <div className='min-h-[80vh] bg-[#F8F9FC] ps-64'>
       {token && <div className="text-3xl font-semibold text-gray-800 pt-5 ml-10">Selamat Datang, {token}!</div>}
       {incomeData && (
+       
         <div className="flex justify-around mt-8">
           <div className="p-4 border border-gray-300 w-80 rounded-md bg-white shadow-md">
             <h2 className="text-xl font-semibold mb-4 text-center text-blue-600">Pendapatan Harian</h2>

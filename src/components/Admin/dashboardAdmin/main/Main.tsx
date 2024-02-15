@@ -10,7 +10,7 @@ const Main = () => {
     const getToken = localStorage.getItem('admin');
     if (getToken) {
       setToken(getToken);
-      fetch('http://localhost:3001/api/transaksi/pemasukan')
+      fetch('https://backendimk.vercel.app/api/transaksi/pemasukan')
         .then(response => response.json())
         .then(data => setIncomeData(data))
         .catch(error => console.error('Error fetching data:', error));
