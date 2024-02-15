@@ -8,7 +8,7 @@ import Footer from '../../components/Admin/dashboardAdmin/footer/Footer';
 import Main from '../../components/Admin/dashboardAdmin/main/Main';
 
 const inter = Inter({ subsets: ["latin"] });
-const Dashboard = () => {
+const DashboardAdmin = () => {
     const router = useRouter();
 
     // Added Session if not Login, direct to Login. Must Login first!
@@ -30,4 +30,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default DashboardAdmin
