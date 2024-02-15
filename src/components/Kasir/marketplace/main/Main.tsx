@@ -54,7 +54,7 @@ const [showCart, setShowCart] = useState(false);
 
     //UseEffect untuk mengambil data dari keranjang      
     useEffect(() => {
-        const getToken = localStorage.getItem('token');
+        const getToken = localStorage.getItem('kasir');
         if(getToken) {
         setToken(getToken)
         }

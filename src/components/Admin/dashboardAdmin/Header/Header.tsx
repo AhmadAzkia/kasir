@@ -8,7 +8,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('kasir')
+    localStorage.removeItem('admin')
     alert("Logged out successfully");
     window.location.reload(); // Merefresh halaman setelah logout
   };

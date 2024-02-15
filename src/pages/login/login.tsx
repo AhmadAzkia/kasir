@@ -35,7 +35,7 @@ const LoginPages = () => {
         
         if (responseKasir.ok) {
             // Simpan token di cookie atau di localStorage
-            localStorage.setItem('token', Username);
+            localStorage.setItem('kasir', Username);
             alert(`Login Berhasil, anda Kasir!`)
             router.push('/dashboardKasir')
         } else {
@@ -49,7 +49,7 @@ const LoginPages = () => {
 
             if(responseAdmin.ok) { 
               // Simpan token di cookie atau di localStorage
-              localStorage.setItem('token', Username);
+              localStorage.setItem('admin', Username);
               alert(`Login Berhasil, anda Admin!`)
               router.push('/dashboardAdmin')
             }
@@ -65,6 +65,17 @@ const LoginPages = () => {
         console.error('Terjadi kesalahan:', error);
     }
   };
+
+  useEffect(() => {
+    const sessionAdmin = localStorage.getItem('admin');
+    const sessionKasir = localStorage.getItem('kasir');
+
+    if(sessionAdmin) {
+      router.push('/dashboardAdmin')
+    } else if(sessionKasir) {
+      router.push('/dashboardKasir')
+    }
+  })
 
 
   return (
